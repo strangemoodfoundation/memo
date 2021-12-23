@@ -1,0 +1,152 @@
+{
+  "version": "0.1.0",
+  "name": "memo",
+  "instructions": [
+    {
+      "name": "initialize",
+      "accounts": [
+        {
+          "name": "memoAccount",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "newBio",
+          "type": "bytes"
+        }
+      ]
+    },
+    {
+      "name": "initAndTransfer",
+      "accounts": [
+        {
+          "name": "memoAccount",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "transferTo",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "newMemo",
+          "type": "bytes"
+        }
+      ]
+    },
+    {
+      "name": "memoTransfer",
+      "accounts": [
+        {
+          "name": "memoAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "transferTo",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": false,
+          "isSigner": true
+        }
+      ],
+      "args": [
+        {
+          "name": "newMemo",
+          "type": "bytes"
+        }
+      ]
+    },
+    {
+      "name": "updateBio",
+      "accounts": [
+        {
+          "name": "memoAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "transferTo",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": false,
+          "isSigner": true
+        }
+      ],
+      "args": [
+        {
+          "name": "newBio",
+          "type": "bytes"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "MemoAccount",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "publicKey"
+          },
+          {
+            "name": "latestMemo",
+            "type": "bytes"
+          },
+          {
+            "name": "bio",
+            "type": "bytes"
+          }
+        ]
+      }
+    }
+  ]
+}
