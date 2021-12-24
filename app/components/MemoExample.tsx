@@ -1,9 +1,5 @@
 import { WalletNotConnectedError } from '@solana/wallet-adapter-base';
-import {
-  useConnection,
-  useWallet,
-  WalletProvider,
-} from '@solana/wallet-adapter-react';
+import { useConnection, useWallet } from '@solana/wallet-adapter-react';
 
 import {
   Keypair,
@@ -11,21 +7,12 @@ import {
   PublicKey,
   SystemProgram,
 } from '@solana/web3.js';
-import { Token, TOKEN_PROGRAM_ID } from '@solana/spl-token';
+
 import React, { FC, useState } from 'react';
-import {
-  createWrappedNativeAccount,
-  sendAndConfirmWalletTransaction,
-} from '../lib/util';
-// import fs from 'fs';
 
 import idl from './memo.json';
 
 import * as anchor from '@project-serum/anchor';
-// import { programId } from './src/lib/constants';
-// import { WalletAdaptorPhantom } from 'wallet-adapter-phantom';
-
-let utf8decoder = new TextDecoder(); // default 'utf-8' or 'utf8'
 
 export const programID = new PublicKey(
   '4WfX3TMZ8pv2FgQyLeWabRoJy5GAYAm7tZhkVGVdsUt7'
@@ -33,13 +20,6 @@ export const programID = new PublicKey(
 
 const DEMO_INITIALIZED_MEMO_ACCOUNT =
   'FGiNoUeBPnh3SAbmuiHPtBJoUzgBEdaAv9bjF3Nt6amZ';
-
-// import { programId } from
-
-// Configure the local cluster.
-// anchor.setProvider(anchor.Provider.local());
-
-// import * as myFile from '../../target/idl/solmemo.json';
 
 export const MemoExample: FC = () => {
   const { connection } = useConnection();
@@ -100,8 +80,6 @@ export const MemoExample: FC = () => {
       );
       console.log('account: ', account);
       console.log(memoAccount.publicKey.toString());
-      // setValue(account.data.toString());
-      // setDataList(account.dataList);
     } catch (err) {
       console.log('Transaction error: ', err);
     }
@@ -119,7 +97,7 @@ export const MemoExample: FC = () => {
 
     console.log('creating rando acct to send sol to...');
     const transferTo = Keypair.generate().publicKey;
-    console.log({ transferTo });
+    console.log({ transferTo: transferTo.toString() });
 
     try {
       /* interact with the program via rpc */
@@ -128,7 +106,9 @@ export const MemoExample: FC = () => {
           memoAccount: memoAccount.publicKey, // publickey for our new account
           authority: provider.wallet.publicKey, // publickey of our anchor wallet provider
           systemProgram: SystemProgram.programId, // just for Anchor reference
+
           // tokenProgram: TOKEN_PROGRAM_ID,
+          transferFrom: provider.wallet.publicKey,
           transferTo, // send moneys to a random acct for now!
         },
         signers: [memoAccount],
@@ -179,8 +159,9 @@ export const MemoExample: FC = () => {
         accounts: {
           memoAccount: currentMemoAccount, // needs to be the same publicKey as init, or it won't work
           authority: program.provider.wallet.publicKey, // needs to be the same publicKey as init, or it won't work
-          tokenProgram: TOKEN_PROGRAM_ID,
-          transferTo, // send moneys to a random acct for now!
+          // tokenProgram: TOKEN_PROGRAM_ID,
+          // transferTo, // send moneys to a random acct for now!
+          // transferFrom: program.provider.wallet.publicKey,
         },
         // how is this supposed to work??? i dont think payer is a keypair. are we sure this isnt the memo account keypair ??
         signers: [], // needs to be the same keyPAIR as init, or it won't work

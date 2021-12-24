@@ -3,61 +3,34 @@
   "name": "memo",
   "instructions": [
     {
-      "name": "initialize",
+      "name": "initPdaAndTransfer",
       "accounts": [
         {
           "name": "memoAccount",
           "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "authority",
-          "isMut": true,
-          "isSigner": true
+          "isSigner": false
         },
         {
           "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": [
-        {
-          "name": "newBio",
-          "type": "bytes"
-        }
-      ]
-    },
-    {
-      "name": "initAndTransfer",
-      "accounts": [
-        {
-          "name": "memoAccount",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "tokenProgram",
           "isMut": false,
           "isSigner": false
         },
         {
           "name": "transferTo",
-          "isMut": false,
+          "isMut": true,
           "isSigner": false
         },
         {
-          "name": "authority",
+          "name": "transferFrom",
           "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
           "isSigner": false
         }
       ],
       "args": [
+        {
+          "name": "memoBump",
+          "type": "u8"
+        },
         {
           "name": "newMemo",
           "type": "bytes"
@@ -73,19 +46,19 @@
           "isSigner": false
         },
         {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
           "name": "transferTo",
-          "isMut": false,
+          "isMut": true,
           "isSigner": false
         },
         {
-          "name": "tokenProgram",
-          "isMut": false,
+          "name": "transferFrom",
+          "isMut": true,
           "isSigner": false
-        },
-        {
-          "name": "authority",
-          "isMut": false,
-          "isSigner": true
         }
       ],
       "args": [
@@ -104,19 +77,19 @@
           "isSigner": false
         },
         {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
           "name": "transferTo",
-          "isMut": false,
+          "isMut": true,
           "isSigner": false
         },
         {
-          "name": "tokenProgram",
-          "isMut": false,
+          "name": "transferFrom",
+          "isMut": true,
           "isSigner": false
-        },
-        {
-          "name": "authority",
-          "isMut": false,
-          "isSigner": true
         }
       ],
       "args": [
@@ -133,10 +106,6 @@
       "type": {
         "kind": "struct",
         "fields": [
-          {
-            "name": "authority",
-            "type": "publicKey"
-          },
           {
             "name": "latestMemo",
             "type": "bytes"
