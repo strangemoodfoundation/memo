@@ -1,8 +1,0 @@
-{
-  "_app.tsx -> ../components/WalletConnectionProvider": {
-    "id": "./components/WalletConnectionProvider.tsx",
-    "files": [
-      "static/chunks/components_WalletConnectionProvider_tsx.js"
-    ]
-  }
-}

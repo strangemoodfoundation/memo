@@ -1,18 +1,58 @@
-// https://docs.rs/anchor-lang/latest/anchor_lang/derive.Accounts.html
+## Memo!
 
-Memo Account per person,
-store a string/vector with a transaction to understand what it was for.
+When using the `memoTransfer`
 
-uses the transfer program and simply records via msg!.
+## Usage
 
-A JS helper is used to easily query the logs.
+### Using @strangemood/memo
 
-#######
+```js
+import {
+  getLastMemos,
+  getMemoAccountForPubkey,
+  getMemoProvider,
+  transferWithMemo,
+} from "@strangemood/memo";
 
-TODO:
+const currentWalletMemoAccount = getMemoAccountForPubkey(
+  `wallet address of a user, likely the current authed user`
+);
+```
 
-- [] pass in destination account
-- [] pass in amount
-- [] query things
-- [] oh so much cleanup
-- [] rebasing so nobody ever ever sees this struggle. maybe. help.
+### RPC Directly
+
+```js
+import * as anchor from "@project-serum/anchor";
+import { memoIDL, DEVNET } from "@strangemood/memo";
+
+// get connection and wallet however you'd like... you can look at inspo in demo/MemoExample.tsx
+
+const provider = new anchor.Provider(connection, wallet);
+const program = new anchor.Program(idl, DEVNET.MEMO_PROGRAM_ID, provider);
+const tx = await program.rpc.memoTransfer(
+  utf8encodedMemo,
+  new anchor.BN(transferData.amount),
+  {
+    accounts,
+  }
+);
+```
+
+### Deploying Memo Program
+
+To use the program it needs to be deployed. This is currently running on the `devnet` but can be deployed on mainnet whenever.
+
+1. Building and Deploying:
+
+`anchor build`
+`anchor deploy`
+
+2. Running the build command above, generates an updated `idl` file. This is managed by Anchor and helps in building the JS client. To make sure the JS client is using a compatible interface to the program on chain, copy the target/idl/memo.json file into `client/src/memo.json`.
+
+### Developing
+
+Create a local symlink so you can develop without new npm publishing.
+
+1. `cd client`, `yarn build`, `yarn link`
+
+2. `cd demo`, `yarn link @strangemood/memo`
