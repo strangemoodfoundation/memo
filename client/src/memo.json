@@ -1,0 +1,129 @@
+{
+  "version": "0.1.0",
+  "name": "memo",
+  "instructions": [
+    {
+      "name": "initAndMemoTransfer",
+      "accounts": [
+        {
+          "name": "memoAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "transferTo",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "transferFrom",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "memoBump",
+          "type": "u8"
+        },
+        {
+          "name": "newMemo",
+          "type": "bytes"
+        },
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "memoTransfer",
+      "accounts": [
+        {
+          "name": "memoAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "transferTo",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "transferFrom",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "newMemo",
+          "type": "bytes"
+        },
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "updateBio",
+      "accounts": [
+        {
+          "name": "memoAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "transferTo",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "transferFrom",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "newBio",
+          "type": "bytes"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "MemoAccount",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "latestMemo",
+            "type": "bytes"
+          },
+          {
+            "name": "bio",
+            "type": "bytes"
+          }
+        ]
+      }
+    }
+  ]
+}

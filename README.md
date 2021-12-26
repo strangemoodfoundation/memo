@@ -1,6 +1,6 @@
-## Memo!
+## Memo Program!
 
-When using the `memoTransfer`
+Send a transfer between two accounts with a memo to remind you about why you made a transaction. The actual program is deployed on the devnet currently. This repo has a js `client` you can use, and a `demo` that you can spin up (basic nexjs app to interface with the client).
 
 ## Usage
 
