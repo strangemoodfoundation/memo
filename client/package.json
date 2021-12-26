@@ -1,9 +1,14 @@
 {
   "name": "@strangemood/memo",
   "version": "0.0.0-1",
-  "private": true,
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/strangemoodfoundation/memo.git"
+  },
   "scripts": {
-    "build": "tsc --resolveJsonModule"
+    "build": "tsc --resolveJsonModule",
+    "prepare": "yarn build"
   },
   "dependencies": {
     "@project-serum/anchor": "^0.18.2",
@@ -28,5 +33,11 @@
   "main": "dist/index.js",
   "prettier": {
     "singleQuote": true
-  }
+  },
+  "author": "Helena Merk",
+  "keywords": [
+    "Solana",
+    "Anchor"
+  ],
+  "description": "Add a memo to a solana transaction between two system accounts"
 }
