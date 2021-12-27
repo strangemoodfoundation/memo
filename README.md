@@ -2,6 +2,8 @@
 
 Send a transfer between two accounts with a memo to remind you about why you made a transaction. The actual program is deployed on the devnet currently. This repo has a js `client` you can use, and a `demo` that you can spin up (basic nexjs app to interface with the client).
 
+Demo: https://memo-1zeh8izw6-strangemood.vercel.app/
+
 ## Usage
 
 ### Using @strangemood/memo
